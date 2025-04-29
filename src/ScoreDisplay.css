@@ -1,0 +1,225 @@
+.score-display {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(36, 38, 41, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 12px 16px;
+  color: var(--text-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  max-width: calc(100vw - 40px);
+  overflow: hidden;
+}
+
+.score-display:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.score-icon {
+  font-size: 24px;
+  animation: trophyPulse 2s ease-in-out infinite;
+}
+
+.score-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 100px;
+}
+
+.score-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.level-info {
+  font-size: 14px;
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.streak-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: nowrap;
+  background: rgba(255, 193, 7, 0.1);
+  padding: 6px 10px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.streak-container:hover {
+  background: rgba(255, 193, 7, 0.2);
+  transform: translateY(-2px);
+}
+
+.streak-icon {
+  font-size: 18px;
+  animation: flameFlicker 1.5s ease-in-out infinite alternate;
+}
+
+.streak-value {
+  font-size: 14px;
+  color: #FFC107;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.level-progress-container {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.level-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 3px;
+  transition: width 0.5s ease-out;
+}
+
+.score-animation {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: 700;
+  animation: scoreFloat 2s ease-out forwards;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.score-animation.positive {
+  color: var(--success-color);
+}
+
+.score-animation.negative {
+  color: var(--error-color);
+}
+
+@keyframes scoreFloat {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40px);
+  }
+}
+
+@keyframes trophyPulse {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  }
+}
+
+@keyframes flameFlicker {
+  0% {
+    transform: scale(1) rotate(-2deg);
+    text-shadow: 0 0 8px rgba(255, 193, 7, 0.6);
+  }
+  25% {
+    transform: scale(1.05) rotate(0deg);
+    text-shadow: 0 0 12px rgba(255, 193, 7, 0.8);
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg);
+    text-shadow: 0 0 16px rgba(255, 87, 34, 0.9);
+  }
+  75% {
+    transform: scale(1.05) rotate(0deg);
+    text-shadow: 0 0 12px rgba(255, 193, 7, 0.8);
+  }
+  100% {
+    transform: scale(1) rotate(-2deg);
+    text-shadow: 0 0 8px rgba(255, 193, 7, 0.6);
+  }
+}
+
+/* Responsive styles for ScoreDisplay */
+@media (max-width: 480px) {
+  .score-display {
+    top: 10px;
+    left: 10px;
+    padding: 10px 12px;
+    min-width: auto;
+    max-width: calc(100vw - 20px);
+  }
+
+  .score-icon {
+    font-size: 20px;
+  }
+
+  .score-value {
+    font-size: 16px;
+  }
+
+  .level-info {
+    font-size: 12px;
+  }
+
+  .streak-container {
+    padding: 4px 8px;
+  }
+
+  .streak-icon {
+    font-size: 16px;
+  }
+
+  .streak-value {
+    font-size: 12px;
+  }
+
+  .level-progress-container {
+    height: 4px;
+  }
+
+  .score-animation {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .score-display {
+    top: 15px;
+    left: 15px;
+  }
+}
